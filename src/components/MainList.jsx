@@ -6,21 +6,28 @@ const MainList = ({ list, setList }) => {
   const [insertToggle, setInsertToggle] = useState(false);
   const [listData, setListData] = useState("");
   const handleRomove = (removeItem) => {
-    setList(
-      list.filter((item) => {
-        return item.id !== removeItem;
-      })
-    );
+    const data = list.filter((item) => {
+      return item.id !== removeItem;
+    });
+    setList(data);
+    localStorage.setItem("key", JSON.stringify(data));
   };
 
   const toggleChange = (toggleItem) => {
-    setList((prev) => {
-      return prev.map((item) => {
-        return item.id === toggleItem
-          ? { ...item, checked: !item.checked }
-          : item;
-      });
+    const toggleData = list.map((item) => {
+      return item.id === toggleItem
+        ? { ...item, checked: !item.checked }
+        : item;
     });
+    // setList((prev) => {
+    //   return prev.map((item) => {
+    //     return item.id === toggleItem
+    //       ? { ...item, checked: !item.checked }
+    //       : item;
+    //   });
+    // });
+    setList(toggleData);
+    localStorage.setItem("key", JSON.stringify(toggleData));
   };
 
   const ModifiToggle = (number) => {
@@ -56,7 +63,7 @@ const MainList = ({ list, setList }) => {
                   {item.checked ? "체크" : "미체크"}
                 </Th>
                 <Th>
-                  <Buttons remove onClick={() => handleRomove(item.id)}>
+                  <Buttons remove="true" onClick={() => handleRomove(item.id)}>
                     제거
                   </Buttons>
                 </Th>

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { IoMdCloseCircle } from "react-icons/io";
 
 export const AppDiv = styled.div`
 padding:0
@@ -49,6 +50,7 @@ export const Table = styled.table`
   border: 1px solid gray;
   border-collapse: collapse;
   margin: 0 auto;
+  max-width: 500px;
 `;
 
 export const Tr = styled.tr`
@@ -79,4 +81,39 @@ export const Buttons = styled.button`
         background: darkred;
       }
     `}
+`;
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  flex-direction: column;
+`;
+
+export const ModalInput = styled.input`
+  padding: 10px 20px;
+  width: 30%;
+  margin-bottom: 20px;
+`;
+
+export const CloseButton = styled.button`
+  position: fixed;
+  padding: 20px;
+  top: 5rem;
+  right: 5rem;
+  font-size: 1rem;
+  font-weight: bold;
+`;
+export const CloseIcon = styled(IoMdCloseCircle)`
+  position: fixed;
+  top: 5rem;
+  right: 5rem;
+  font-size: 2rem;
+  margin-right: 5px; /* 아이콘과 버튼 사이의 간격 조절 (원하는 간격으로 조절) */
 `;

@@ -7,11 +7,11 @@ import { toast } from "react-toastify";
 
 function App() {
   useEffect(() => {
-    localStorage.setItem("key", JSON.stringify(list));
     const localData = JSON.parse(localStorage.getItem("key"));
-    setList(localData);
+    if (localData) {
+      setList(localData);
+    }
   }, []);
-
   const [inputValue, setInputValue] = useState("");
   const [list, setList] = useState([
     {
@@ -33,7 +33,7 @@ function App() {
 
   const submit = (e) => {
     e.preventDefault();
-    let number = list.length + 1;
+    let number = list[list.length - 1].id + 1;
     const listData = {
       id: number,
       text: inputValue,
@@ -42,7 +42,7 @@ function App() {
     setList((prev) => [...prev, listData]);
     console.log(list);
     toast.success("게시글 작성 완료 👌");
-    localStorage.setItem("key", JSON.stringify(list));
+    localStorage.setItem("key", JSON.stringify([...list, listData]));
     setInputValue("");
   };
 
